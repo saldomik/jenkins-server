@@ -1,0 +1,8 @@
+version: "3"
+services:
+	jenkins:
+		image: jenkins-ansible
+		build: .
+		ports:
+			- "8080:8080"
+
