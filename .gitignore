@@ -8,3 +8,6 @@
 
 # Crash log files
 crash.log
+
+#Public key
+id_rsa.pub
