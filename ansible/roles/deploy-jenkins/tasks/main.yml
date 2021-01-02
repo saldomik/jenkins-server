@@ -1,0 +1,29 @@
+- name: Create dest folder for docker files
+  file:
+    path: /home/ubuntu/jenkins
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+- name: Copy Dockerfile and docker-compose file
+  copy:
+    src: "{{ item }}"
+    dest: /home/ubuntu/jenkins
+    owner: ubuntu
+    group: ubuntu
+  loop:
+    - "/home/saldomik/Scrivania/jenkins-server/docker-compose.yml"
+    - "/home/saldomik/Scrivania/jenkins-server/Dockerfile"
+- name: adding existing user 'ubuntu' to group docker
+  become: yes
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+- name: Ensure pip is installed
+  apt:
+    name: python3-pip
+- name: Ensure required python libraries are installed
+  pip:
+    name: docker
+- name: Create and start jenskins container
+  command: "docker-compose -f /home/ubuntu/jenkins/docker-compose.yml up --build -d"
