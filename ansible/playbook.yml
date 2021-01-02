@@ -3,3 +3,4 @@
   roles:
     - { role: system-upgrade, tags: ["upgrade"] }
     - { role: geerlingguy.docker, tags: ["install-docker"] }
+    - { role: deploy-jenkins, tags: ["deploy-jenkins"] }
