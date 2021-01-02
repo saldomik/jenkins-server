@@ -1,3 +1,5 @@
 - hosts: all
+  remote_user: ubuntu
   roles:
-    - geerlingguy.docker
+    - { role: system-upgrade, tags: ["upgrade"] }
+    - { role: geerlingguy.docker, tags: ["install-docker"] }
