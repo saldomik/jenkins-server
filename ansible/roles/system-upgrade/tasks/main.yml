@@ -1,0 +1,17 @@
+- name: Update repository
+  apt:
+    update_cache: yes
+  become: yes
+- name: Enable universe repository
+  apt_repository:
+    repo: "{{ item }}"
+    update_cache: yes
+  loop:
+    - "deb http://archive.ubuntu.com/ubuntu/ focal universe"
+    - "deb http://archive.ubuntu.com/ubuntu/ focal-updates universe"
+    - "deb http://security.ubuntu.com/ubuntu/ focal-security universe"
+  become: yes
+- name: Upgrade packages
+  apt:
+    upgrade: yes
+  become: yes
